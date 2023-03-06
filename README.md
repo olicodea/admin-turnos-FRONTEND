@@ -18,4 +18,5 @@ Montserrat - https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&di
 
 Gestión y planificación del proyecto:
 ---
-Link -> https://trello.com/c/UlSKLS1F
+
+[05-03-2023-Proyecto-Fullstack#1-Trello.pdf](https://github.com/olicodea/admin-turnos-FRONTEND/files/10894507/05-03-2023-Proyecto-Fullstack.1-Trello.pdf)
