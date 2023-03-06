@@ -6,7 +6,7 @@ El sistema ofrece una solución para administrar turnos en un micro-emprendimien
 
 En este proyecto se consume la API REST desarrollada con Node JS y Express. 
 
-El repositorio del **BACKEND** es --> https://github.com/olicodea/admin-turnos-BACKEND
+El repositorio del **BACKEND** es https://github.com/olicodea/admin-turnos-BACKEND
 
 Estado del proyecto:
 ---
