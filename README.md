@@ -4,7 +4,7 @@ Proyecto web FRONTEND creado con HTML, CSS y Vanilla Javascript. Este proyecto s
 
 El sistema ofrece una solución para administrar turnos en un micro-emprendimiento. 
 
-En este proyecto se desarrolla la interfaz que muestra los datos obtenidos de la API REST desarrollada con Node JS y Express. 
+En este proyecto se desarrolla la UI que muestra los datos obtenidos de la API REST desarrollada con Node JS y Express. 
 
 El repositorio del **BACKEND** es --> https://github.com/olicodea/admin-turnos-BACKEND
 
