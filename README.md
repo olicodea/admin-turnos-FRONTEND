@@ -9,10 +9,10 @@ En este proyecto se desarrolla la interfaz que muestra los datos obtenidos de la
 El repositorio del **BACKEND** es --> https://github.com/olicodea/admin-turnos-BACKEND
 
 Estado del proyecto:
-***
+---
 Actualmente cuenta con la interfaz de Listado de Turnos funcionando.
 
 Fonts:
-***
+---
 
 Montserrat - "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
