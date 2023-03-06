@@ -14,4 +14,4 @@ Actualmente cuenta con la interfaz de Listado de Turnos funcionando.
 
 Fonts:
 ---
-Montserrat - "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+Montserrat - https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap
