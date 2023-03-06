@@ -18,4 +18,4 @@ Montserrat - https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&di
 
 Gestión y planificación del proyecto:
 ---
-<blockquote class="trello-card"><a href="https:&#x2F;&#x2F;trello.com&#x2F;c&#x2F;UlSKLS1F&#x2F;5-stream-05-03-2023-proyecto-fullstack-1">Stream 05-03-2023 - Proyecto fullstack #1</a></blockquote><script src="https://p.trellocdn.com/embed.min.js"></script>
+Link -> https://trello.com/c/UlSKLS1F
