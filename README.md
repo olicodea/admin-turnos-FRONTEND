@@ -1,4 +1,4 @@
-# Administrador de turnos - FRONTEND
+<h1 align="center">Administrador de turnos - FRONTEND</h1>
 Proyecto web FRONTEND creado con HTML, CSS y Vanilla Javascript. Este proyecto se comenzó a desarrollar en vivo por el canal de twitch <a href="https://www.twitch.tv/void_oli">VOID_OLI</a> junto con la comunidad.
 
 El sistema ofrece una solución para administrar turnos en un micro-emprendimiento. 
