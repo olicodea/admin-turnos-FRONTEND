@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 :root {
-    --colorPrincipal: #141414;
-    --colorSecundario: #fff;
+    --colorPrincipal: #0d1117;
+    --colorSecundario: #e3e3e3;
 }
 
 * {
@@ -28,6 +28,7 @@ header {
 h1 {
     margin-bottom: 25px;
     text-align: center;
+    color: #9685d8;
 }
 
 ul {
@@ -40,32 +41,33 @@ li {
     font-size: 1.4rem;
     text-transform: uppercase;
     cursor: pointer;
-    transition: color 0.3s ease;
-    transition: border-bottom-color 0.3s ease;
+    transition: color 0.2s ease;
+    color: #7d51b1;
 }
 
 .active {
-    border-bottom: #fff 2px solid;
+    border-bottom: #9685d8 2px solid;
 }
 
 li:hover {
-    color: #b8b8b8;
-    border-bottom-color: #b8b8b8;
+    color: #9685d8;
 }
 
-main{
+main {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
 }
 
-section{
+section {
     width: 100%;
 }
 
-.card{
+.card {
     height: 100px;
-    background-color: #1a1a1a;
+    background-color: rgb(26, 24, 48);
     border-radius: 8px;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     margin-bottom: 15px;
     padding: 15px;
     display: flex;
@@ -73,12 +75,48 @@ section{
     justify-content: space-around;
 }
 
-.card-top{
+.card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.d-none{
+.d-none {
     display: none;
+}
+
+.estado {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: #9685d8;
+    color: #562094;
+    padding: 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn:active {
+    opacity: 1;
+}
+
+.btn-cliente{
+    width: 150px;
+    margin: auto;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.card-top-cliente{
+    padding: 20px 0;
 }
