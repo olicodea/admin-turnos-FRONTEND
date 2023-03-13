@@ -12,17 +12,45 @@
             <h1>Administrador de turnos</h1>
             <nav>
                 <ul>
-                    <li>Turnos</li>
-                    <li class="active">Clientes</li>
+                    <li id="tabTurno" class="tab active">Turnos</li>
+                    <li id="tabCliente" class="tab">Clientes</li>
                 </ul>
             </nav>
         </header>
         <main>
-            <button class="btn">Registrar Cliente</button>
-            <section id="turnos" class="d-none"></section>
-            <section id="clientes">
+            <section id="turnos">
+                <div id="registrarTurno" class="d-none">
+                    <h2>Registrando turno</h2>
+                    <form id="turnosForm" class="form">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" class="inputForm" />
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" class="inputForm" />
+                        <label for="selectClientes">Cliente: </label>
+                        <select id="selectClientes" class="inputForm">
+                            <option value="">Seleccione cliente</option>
+                        </select>
+                        <div class="btn-container">
+                            <input type="submit" id="guardarTurnoBtn" class="btn" value="GUARDAR"/>
+                            <button id="cancelarTurnoBtn" class="btn">CANCELAR</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section id="clientes" class="d-none">
+                <div id="registrarCliente" class="d-none">
+                    <h2>Registrando cliente</h2>
+                    <form id="clientesForm" action="">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" class="inputForm" />
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" class="inputForm" />
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" class="inputForm" />
+                    </form>
+                </div>
             </section>
         </main>
-        <script src="index.js"></script>
+        <script type="module" src="./functionalities/index.js"></script>
     </body>
 </html>

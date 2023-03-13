@@ -95,6 +95,8 @@ section {
     color: #562094;
     padding: 10px;
     border-radius: 6px;
+    border: none;
+    text-align: center;
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 15px;
@@ -106,8 +108,12 @@ section {
     opacity: 0.9;
 }
 
-.btn:active {
+.btn:active{
     opacity: 1;
+}
+
+.btn:focus{
+    outline: none;
 }
 
 .btn-cliente{
@@ -119,4 +125,28 @@ section {
 
 .card-top-cliente{
     padding: 20px 0;
+}
+
+.form{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form .inputForm{
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+.inputForm:focus{
+    outline: none;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
 }
