@@ -19,16 +19,18 @@ body {
 
 header {
     width: 100%;
-    font-size: 0.9rem;
-    padding: 20px 0;
+    font-size: 0.8rem;
+    height: 100px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: space-around;
 }
 
 h1 {
-    margin-bottom: 25px;
     text-align: center;
     color: #9685d8;
+    padding: 15px 0;
 }
 
 ul {

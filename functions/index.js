@@ -1,19 +1,19 @@
-import { clientesAPI, turnosAPI } from "../remoteApi/api.js";
+import { clientesAPI, turnosAPI } from "../api/api.js";
 
 const turnos = document.getElementById("turnos");
 const clientes = document.getElementById("clientes");
 const tabCliente = document.querySelector("#tabCliente");
 const tabTurno = document.querySelector("#tabTurno");
 const main = document.querySelector("main");
-const registrarTurno = document.querySelector("#registrarTurno");
-const registrarCliente = document.querySelector("#registrarCliente");
+const registrarTurnoForm = document.querySelector("#registrarTurno");
+const registrarClienteForm = document.querySelector("#registrarCliente");
 
 const url = "http://localhost:7000/api/peluqueria";
 
 window.addEventListener("load", listarTurnos);
 
-const verTabCliente = (e) => {
-    e.preventDefault();
+const verTabCliente = (e = null) => {
+    if(e) e.preventDefault();
     tabTurno.classList.remove("active");
     tabCliente.classList.add("active");
 
@@ -47,21 +47,23 @@ async function listarClientes() {
     const urlClientes = `${url}/clientes`;
     clientes.innerHTML = "";
     turnos.innerHTML = "";
-    crearBoton("crearClienteBtn", "CREAR CLIENTE");
+    const btnCrear = crearBoton("crearClienteBtn", "CREAR CLIENTE");
     const data = await clientesAPI.getAll(urlClientes);
     data.forEach(async (cliente) => {
-        const { id, nombre, apellido, telefono } = cliente;
+        const { id: idCliente, nombre, apellido, telefono } = cliente;
         const card = document.createElement("div");
         card.classList.add("card");
         card.classList.add("card-cliente");
-        card.innerHTML = `
-        <div class="card-top card-top-cliente">
+        card.innerHTML = `<div class="card-top card-top-cliente">
             <h3>${nombre} ${apellido}</h3>
             <p>Teléfono: ${telefono}</p>
+            <button class="btn" id="${idCliente}">Editar</button>
         </div>
-        <button class="btn btn-cliente">Ver turnos</button>
         `;
-
+        const btnEditar = card.children[0].children[2];
+        btnEditar.addEventListener("click", () => {
+            mostrarForm("crearClienteBtn", btnCrear, idCliente);
+        });
         clientes.appendChild(card);
     });
 }
@@ -75,8 +77,10 @@ async function listarTurnos() {
     const urlTurnos = `${url}/turnos`;
     clientes.innerHTML = "";
     turnos.innerHTML = "";
+
     crearBoton("crearTurnoBtn", "CREAR TURNO");
     const { data } = await turnosAPI.getAll(urlTurnos);
+
     data.forEach(async (turno) => {
         const { idCliente, fecha, hora, idEstado } = turno;
         const cliente = await buscarCliente(idCliente);
@@ -97,33 +101,61 @@ async function buscarCliente(id) {
     return await fetch(`${url}/clientes/${id}`).then((res) => res.json());
 }
 
-function guardarTurno(e) {
-    e.preventDefault();
-    const turno = {
-        fecha: "",
-        hora: "",
-        idCliente: null,
-    };
-    const inputsTurno = document.querySelectorAll(".inputForm");
-    inputsTurno.forEach((input) => {
-        if (input.id === "fecha") turno.fecha = input.value;
+async function guardarTurno(e) {
+    try {
+        e.preventDefault();
+        const turno = {
+            fecha: "",
+            hora: "",
+            idCliente: null,
+        };
+        const inputsTurno = document.querySelectorAll(".inputForm");
+        inputsTurno.forEach((input) => {
+            if (input.id === "fecha") turno.fecha = formatearFecha(input.value);
+            if (input.id === "hora") turno.hora = input.value;
+            if (input.id === "selectClientes") turno.idCliente = input.value;
+        });
+        await turnosAPI.create(`${url}/turno`, turno);
+        verTabTurno(e);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-        if (input.id === "hora") turno.hora = input.value;
+async function guardarCliente(idCliente) {
+    try {
+        const cliente = {
+            id: idCliente,
+            nombre: document.querySelector("#nombre").value,
+            apellido: document.querySelector("#apellido").value,
+            telefono: document.querySelector("#telefono").value,
+        };
 
-        if (input.id === "selectClientes") turno.idCliente = input.value;
-    });
-    turnosAPI.create(`${url}/turno`, turno);
-    verTabTurno(e);
+        if (idCliente) {
+            await clientesAPI.update(`${url}/clientes/${idCliente}`, cliente);
+        } else {
+            await clientesAPI.create(`${url}/clientes`, cliente);
+        }
+
+        verTabCliente();
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function cancelarTurno(e) {
     verTabTurno(e);
 }
 
+function cancelarCliente(e) {
+    verTabCliente(e);
+}
+
 async function llenarSelect() {
     const selectClientes = document.querySelector("#selectClientes");
     const clientes = await clientesAPI.getAll(url + "/clientes");
 
+    selectClientes.innerHTML = `<option value="">Seleccione cliente</option>`;
     clientes.forEach((cliente) => {
         const { id, nombre, apellido, telefono } = cliente;
         const option = document.createElement("option");
@@ -133,19 +165,41 @@ async function llenarSelect() {
     });
 }
 
-const mostrarForm = (id, btn) => {
+const mostrarForm = async (id, btn, idCliente = null) => {
     if (id === "crearTurnoBtn") {
-        registrarTurno.classList.remove("d-none");
+        registrarTurnoForm.classList.remove("d-none");
         turnos.innerHTML = "";
         btn.remove();
-        turnos.append(registrarTurno);
+        turnos.append(registrarTurnoForm);
         llenarSelect();
+
         const guardarBtn = document.querySelector("#guardarTurnoBtn");
         const cancelarBtn = document.querySelector("#cancelarTurnoBtn");
         guardarBtn.addEventListener("click", guardarTurno);
         cancelarBtn.addEventListener("click", cancelarTurno);
-    } else {
-        registrarCliente.classList.toggle("d-none");
+    } else if (id === "crearClienteBtn") {
+        registrarClienteForm.classList.remove("d-none");
+        clientes.innerHTML = "";
+        btn.remove();
+
+        clientes.append(registrarClienteForm);
+        if (idCliente) {
+            const clientePrecarga = await buscarCliente(idCliente);
+            document.querySelector("#nombre").value = clientePrecarga.nombre;
+            document.querySelector("#apellido").value =
+                clientePrecarga.apellido;
+            document.querySelector("#telefono").value =
+                clientePrecarga.telefono;
+        }
+
+        const guardarBtn = document.querySelector("#guardarClienteBtn");
+        const cancelarBtn = document.querySelector("#cancelarClienteBtn");
+
+        cancelarBtn.addEventListener("click", cancelarCliente);
+        guardarBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            guardarCliente(idCliente);
+        });
     }
 };
 
@@ -155,7 +209,7 @@ function crearBoton(id, texto) {
         btnOld.remove();
     }
     const btn = document.createElement("button");
-    btn.id = id;
+    btn.id = id; // Será crearTurnoBtn || crearClienteBtn
     btn.classList.add("btn");
     btn.innerText = texto;
 
@@ -164,6 +218,7 @@ function crearBoton(id, texto) {
         mostrarForm(id, btn);
     });
     main.prepend(btn);
+    return btn;
 }
 
 function chequearEstado(idEstado) {
@@ -172,4 +227,13 @@ function chequearEstado(idEstado) {
     if (idEstado === 2) return "REALIZADO";
 
     if (idEstado === 3) return "CANCELADO";
+}
+
+function formatearFecha(fecha) {
+    const date = new Date(fecha);
+    return new Intl.DateTimeFormat("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+    }).format(date);
 }

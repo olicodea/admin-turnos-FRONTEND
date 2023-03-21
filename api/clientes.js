@@ -23,6 +23,20 @@ const clientesAPI = {
         const data = await res.json();
 
         return data;
+    },
+    async update(url, body){
+        const options = {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        }
+
+        const res = await fetch(url, options);
+        const data = await res.json();
+
+        return data;
     }
 }
 
