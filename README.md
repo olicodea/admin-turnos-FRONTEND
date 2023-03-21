@@ -4,13 +4,14 @@ Proyecto web FRONTEND creado con HTML, CSS y Vanilla Javascript. Este proyecto s
 
 El sistema ofrece una solución para administrar turnos en un micro-emprendimiento. 
 
-En este proyecto se consume la API REST desarrollada con Node JS y Express. 
+En este proyecto se consume la API REST desarrollada con Node JS y Express.
 
 El repositorio del **BACKEND** es https://github.com/olicodea/admin-turnos-BACKEND
 
-Estado del proyecto:
+Estado del proyecto y funcionalidades:
 ---
-Actualmente cuenta con la interfaz de Listado de Turnos funcionando.
+- Pestaña de Turnos: Se encuentra funcionando el registro y el listado de turnos (mostrando cliente, fecha, hora y estado).
+- Pestaña de Clientes: Se encuentra funcionando el registro, modificación y listado de clientes (mostrando nombre, apellido y teléfono).
 
 Fonts:
 ---
