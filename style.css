@@ -59,6 +59,8 @@ main {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
 }
 
 section {
@@ -74,13 +76,31 @@ section {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.cliente-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-top-cliente h4::after {
+    content: attr(data-nombre);
+}
+
+.edit-icon {
+    font-size: 1.2rem;
+}
+
+.p-card {
+    margin-top: 5px;
+    font-size: 14px;
 }
 
 .d-none {
@@ -104,51 +124,89 @@ section {
     margin-bottom: 15px;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
 }
 
 .btn:hover {
     opacity: 0.9;
 }
 
-.btn:active{
+.btn:active {
     opacity: 1;
 }
 
-.btn:focus{
+.btn:focus {
     outline: none;
 }
 
-.btn-cliente{
+.btn-cliente {
     width: 150px;
     margin: auto;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.card-top-cliente{
+.card-top-cliente {
     padding: 20px 0;
 }
+.cliente-info h4 {
+    position: relative;
+}
 
-.form{
+[data-name]:before {
+    opacity: 0;
+    content: attr(data-name);
+    background: #562094;
+    width: auto-fit;
+    height: 20px;
+    padding: 5px;
+    display: block;
+    position: absolute;
+    top: -30px;
+    border-radius: 4px;
+    color: #fff;
+    left: 0;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+[data-name]:hover:before {
+    opacity: 1;
+}
+
+.form {
     margin-top: 25px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.form .inputForm{
+.form .inputForm {
     height: 30px;
     padding: 0 10px;
     border-radius: 6px;
     border: none;
 }
 
-.inputForm:focus{
+.inputForm:focus {
     outline: none;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     flex-direction: column;
     margin-top: 25px;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
